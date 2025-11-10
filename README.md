@@ -1,14 +1,105 @@
-# Fingerprint Authentication System
+# 🔐 Biometric E-Voting System
 
-Multi-backend biometric authentication system using:
+A comprehensive fingerprint biometric authentication system for secure electronic voting. This system combines advanced biometric technology with modern web development to create a transparent, secure, and user-friendly voting platform.
 
-- 🖼️ React (Frontend)
-- 🧠 Java (Spring Boot) for scanning + matching
-- 💽 PHP (MariaDB) for template storage and retrieval
+## 🌟 Features
 
-This is a complete Guide on how to setup the project with the Secugen Hamster Plus Scanner
+### 🔒 Biometric Security
+- **SecuGen Hamster Plus Integration**: Industry-leading fingerprint scanner
+- **256-bit Encryption**: Military-grade security for biometric data
+- **One Person, One Vote**: Prevents duplicate voting through biometric verification
+- **Fake Finger Detection**: Advanced security against spoofing attempts
 
-> 💡 **Note:** You need to install Maven, Springboot and Java * before running this project
+### 🗳️ Complete Election Management
+- **Election Lifecycle**: Create, manage, and monitor elections from start to finish
+- **Real-time Results**: Live vote counting and result display
+- **Candidate Management**: Add candidates with photos and manifestos
+- **Voter Registration**: Secure user registration with biometric templates
+
+### 👥 Role-Based Access Control
+- **Admin Dashboard**: Complete election management interface
+- **User Dashboard**: Personal voting history and available elections
+- **Secure Authentication**: Role-based login with fingerprint or password
+- **Audit Trail**: Complete logging of all system actions
+
+### 📱 Modern User Interface
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile
+- **Interactive Scanner Demo**: Step-by-step fingerprint scanning guide
+- **Real-time Statistics**: Live updates on voter turnout and election progress
+- **Bootstrap 5**: Modern, professional UI components
+
+## 🏗️ Architecture
+
+### Backend Components
+- **PHP 8+ REST API**: Complete API for elections, voting, and user management
+- **MySQL Database**: Enhanced schema with proper indexing and constraints
+- **Java Spring Boot**: Fingerprint scanning and matching service
+- **Security Features**: Input validation, SQL injection prevention, audit logging
+
+### Frontend Components
+- **React 19**: Modern component-based architecture
+- **React Router**: Role-based protected routing
+- **Bootstrap 5**: Responsive design framework
+- **Context API**: Global authentication state management
+
+## 📋 System Requirements
+
+### Server Requirements
+- **PHP 8.0+**
+- **MySQL 8.0+**
+- **Apache/Nginx** web server
+- **Java 8+** (for fingerprint service)
+- **SecuGen SDK** for fingerprint operations
+
+### Client Requirements
+- **Modern web browser** (Chrome, Firefox, Safari, Edge)
+- **JavaScript enabled**
+- **Internet connection** for API communication
+
+## 🚀 Installation
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/EchoJnr/Fingerprint-auth-system.git
+cd Fingerprint-auth-system
+```
+
+### 2. Switch to the Complete E-Voting Branch
+```bash
+git checkout feature/complete-evoting-system
+```
+
+### 3. Database Setup
+```bash
+# Import the enhanced database schema
+mysql -u username -p evoting < backend/php/database/schema.sql
+```
+
+### 4. Configure Backend
+```bash
+# Update database configuration in backend/php/config/database.php
+# Edit with your database credentials
+```
+
+### 5. Start Fingerprint Service
+```bash
+# Navigate to Java backend
+cd backend/java
+mvn spring-boot:run
+# Or build and run JAR
+mvn clean package
+java -jar target/fingerprint-auth.jar
+```
+
+### 6. Configure Frontend
+```bash
+# Navigate to React frontend
+cd frontend/e-voting_biometric-auth
+npm install
+npm run dev
+```
+
+> 💡 **Note:** You need to install Maven, Spring Boot and Java before running this project
 
 # Setup
 

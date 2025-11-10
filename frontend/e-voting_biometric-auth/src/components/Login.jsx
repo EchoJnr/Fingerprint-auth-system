@@ -2,9 +2,9 @@ import {useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as bootstrap from 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import Modal from './Others/Modal';
+import Prompt from './Prompt';
 
 const Login = () => {
-  const navigate = useNavigate();
   const [template, setTemplate] = useState();
   const [matched, setMatched] = useState();
   const [step, setStep] = useState(1);
@@ -12,6 +12,7 @@ const Login = () => {
   const [isBiometric, setIsBiometric] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [statusMessage, setStatusMessage] = useState("Click start to begin");
+  const [prompt, setPrompt] = useState({ id: null, message: "", type: "" });
 
   const [formData, setFormData] = useState({
     email:'',
@@ -32,6 +33,12 @@ const Login = () => {
     success: "Fingerprint captured successfully",
     failed: "Failed to capture check your device",
     timeout: "Scanner timeout..."
+  }
+
+  const promptMessages = {
+    wrongpass: "Incorrect password or email",
+    wrongbio: "Fingerprint miss-match",
+    success: "Login successful"
   }
 
   const handleChange = (e)=>{
@@ -65,6 +72,8 @@ const Login = () => {
           ...prev,
           "template":data.template
         }));
+
+
 
         setFPColor(colors.green);
         setStatusMessage(status.success)
@@ -100,6 +109,11 @@ const Login = () => {
     const data = await res.json();
     
     setMatched(data.matched)
+    if(matched){
+      setPrompt({id: Date.now(), message: promptMessages.success, type: "success" });
+    }else{
+      setPrompt({id: Date.now(), message: promptMessages.wrongbio, type: "error" });
+    }
     console.log(data);
   }
 
@@ -124,11 +138,12 @@ const Login = () => {
     }
     const response = await fetch("http://localhost/Projects/biometric-evoting/api/user/login.php", requestBody);
     const data = await response.json();
+    console.log(data)
     
     if(data.template)
       setTemplate(data.template)
     if(data.status == false){
-      console.log(data)
+      setPrompt({ id: Date.now(), message: promptMessages.wrongpass, type: "error" });
       return;
     }
 
@@ -137,7 +152,8 @@ const Login = () => {
     if(isBiometric){
       match()
     }else{
-      navigate("/dashboard")
+      setPrompt({ id: Date.now(), message: promptMessages.success, type: "success" });
+      // navigate("/dashboard")
     }
   }
 
@@ -158,6 +174,12 @@ const Login = () => {
 
   return (
     <div className="container my-5">
+      <Prompt
+        id={prompt.id}
+        message={prompt.message}
+        type={prompt.type}
+        onClose={()=>setPrompt({message:"", type:""})}
+      />
       <div className="row justify-content-center">
         <div className="col-12 col-sm-10 col-md-6 col-lg-4">
           <div className="card shadow-sm rounded">

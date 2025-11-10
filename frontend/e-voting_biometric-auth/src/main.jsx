@@ -10,6 +10,7 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Dashboard from './components/Dashboard.jsx'
+import Voting from './components/Voting.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,9 @@ const router = createBrowserRouter([
   },{
     path: '/dashboard',
     element: <Dashboard/>
+  },{
+    path: '/voting',
+    element: <Voting/>
   }
 ])
 

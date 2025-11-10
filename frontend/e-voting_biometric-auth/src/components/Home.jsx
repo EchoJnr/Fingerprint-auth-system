@@ -446,4 +446,4 @@ const EnhancedHomepage = () => {
   );
 };
 
-export default Homepage;
+export default EnhancedHomepage;
